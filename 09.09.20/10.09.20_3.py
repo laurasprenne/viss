@@ -1,0 +1,5 @@
+A=input('ievadi sākuma vietu')
+B=input('ievadi beigu vietu')
+km=int(input('ievadi attālumu'))
+kmh=int(input('ievadi ātrumu'))
+print(int(km/kmh))

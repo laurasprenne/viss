@@ -1,0 +1,37 @@
+laura=# CREATE TABLE aktieri(ID int GENERATED ALWAYS AS IDENTITY, Vards varchar(30), Uzvards varchar(30), PRIMARY KEY(ID));
+
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Timothee', 'Chalamet');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Zendaya', 'Coleman');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Tom', 'Holland');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Sorcha', 'Ronan');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Florence', 'Pugh');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Florence', 'Pugh');
+laura=# INSERT INTO aktieri(Vards, Uzvards) VALUES('Johnny', 'Depp');
+laura=# CREATE TABLE filmas(ID_filmas int GENERATED ALWAYS AS IDENTITY, Nosaukums varchar(30), Gads int, PRIMARY KEY(ID_FILMAS));
+
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Dune', 2021);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('French Dispatch', 2021);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Little woman', 2019);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Spiderman: Homecoming', 2017);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Lady bird', 2017);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Edward Scissorhands', 1990);
+laura=# INSERT INTO filmas(Nosaukums, Gads) VALUES('Midsommar', 2019);
+
+CREATE TABLE filmas_aktieri(ID1 int, ID2 int, FOREIGN KEY (ID1) REFERENCES aktieri(ID), FOREIGN KEY(ID2) REFERENCES filmas(ID_filmas));
+laura=# INSERT INTO filmas_aktieri VALUES (1, 1);
+laura=# INSERT INTO filmas_aktieri VALUES (1, 2);
+laura=# INSERT INTO filmas_aktieri VALUES (1, 3);
+laura=# INSERT INTO filmas_aktieri VALUES (1, 5);
+laura=# INSERT INTO filmas_aktieri VALUES (2, 1);
+laura=# INSERT INTO filmas_aktieri VALUES (2, 4);
+laura=# INSERT INTO filmas_aktieri VALUES (3, 4);
+laura=# INSERT INTO filmas_aktieri VALUES (4, 2);
+laura=# INSERT INTO filmas_aktieri VALUES (4, 3);
+laura=# INSERT INTO filmas_aktieri VALUES (4, 5);
+laura=# INSERT INTO filmas_aktieri VALUES (5, 3);
+laura=# INSERT INTO filmas_aktieri VALUES (5, 7);
+laura=# INSERT INTO filmas_aktieri VALUES (7, 6);
+
+laura=# SELECT * FROM aktieri;
+laura=# SELECT aktieri.Vards, aktieri.Uzvards, filmas.Nosaukums from aktieri INNER JOIN filmas_aktieri ON aktieri.ID = filmas_aktieri.ID1 INNER JOIN filmas ON ID_filmas = filmas_aktieri.ID2 ORDER BY filmas.nosaukums;
+laura=# SELECT aktieri.Vards, aktieri.Uzvards, filmas.Nosaukums from aktieri INNER JOIN filmas_aktieri ON aktieri.ID = filmas_aktieri.ID1 INNER JOIN filmas ON ID_filmas = filmas_aktieri.ID2 WHERE aktieri.Vards = 'Timothee';
